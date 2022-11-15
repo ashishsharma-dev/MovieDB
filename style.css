@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap");
 :root {
   --background-color: #333;
   --heading-color: #fff;
@@ -10,41 +10,130 @@
   padding: 0;
   box-sizing: border-box;
 }
-a,li{
+a,
+li {
   margin: 0;
   padding: 0;
   text-decoration: none;
   list-style: none;
 }
-#overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  background-image: url("moviecol.webp");
+  background-position: center;
+  background-size: cover;
 }
 
-.navbarNav{
+.navbarNav {
   padding: 0.5rem 0.85rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-.textWhite{
+.textWhite {
   color: var(--heading-color);
 }
-.navBrand{
+.navBrand {
   font-weight: 800;
   color: var(--heading-color);
 }
-.navbarNav ul{
+.navbarNav ul {
   display: flex;
   justify-content: space-between;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+.searchInput {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+.searchInput input {
+  width: 90%;
+  border: none;
+  padding: 0.35rem 0.85rem;
+  outline: none;
+  font-weight: 600;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.searchResults {
+  width: 90%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.searchResults::-webkit-scrollbar {
+  display: none;
+}
+.card {
+  display: flex;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.card img {
+  width: 5rem;
+}
+.textNormal {
+  font-size: 1rem;
+  color: var(--heading-color);
+}
+.small {
+  font-size: 0.85rem;
+  color: var(--para-light);
+}
+.btn {
+  border: none;
+  font-weight: 600;
+  padding: 0.15rem 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.addToFav {
+  background-color: rgb(239, 184, 19);
+  color: var(--heading-color);
+}
+.header {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin: 0.85rem 0;
+}
+@media only screen and (max-width: 600px) {
+  .header {
+    text-align: center;
+  }
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  width: 90%;
+  margin: 1rem auto;
+}
+.favMovieCard img {
+  width: 100%;
+}
+.favMovieContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.favMovieContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.favRight {
+  text-align: center;
+}
+
+.singleMovieContainer {
+  display: flex;
 }
