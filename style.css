@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap');
+:root {
+  --background-color: #333;
+  --heading-color: #fff;
+  --para-light: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a,li{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbarNav{
+  padding: 0.5rem 0.85rem;
+}
+.textWhite{
+  color: var(--heading-color);
+}
+.navBrand{
+  font-weight: 800;
+  color: var(--heading-color);
+}
+.navbarNav ul{
+  display: flex;
+  justify-content: space-between;
+}
