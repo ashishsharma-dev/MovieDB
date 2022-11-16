@@ -80,6 +80,7 @@ body {
 }
 .card img {
   width: 5rem;
+  cursor: pointer;
 }
 .textNormal {
   font-size: 1rem;
@@ -88,6 +89,21 @@ body {
 .small {
   font-size: 0.85rem;
   color: var(--para-light);
+}
+.bold {
+  font-weight: 600;
+}
+.mx1 {
+  margin: 0 0.85rem;
+}
+.my1 {
+  margin: 0.85rem 0;
+}
+.mt1 {
+  margin-top: 0.85rem;
+}
+.mb1 {
+  margin-bottom: 0.85rem;
 }
 .btn {
   border: none;
@@ -117,6 +133,12 @@ body {
   width: 90%;
   margin: 1rem auto;
 }
+.favMovieCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
 .favMovieCard img {
   width: 100%;
 }
@@ -136,4 +158,18 @@ body {
 
 .singleMovieContainer {
   display: flex;
+  gap: 1rem;
+}
+@media only screen and (max-width: 720px) {
+  .singleMovieContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.singleMovieContainer .header {
+  margin-top: 0;
+}
+
+.singleMovieContainer .rating {
+  font-size: 1.5rem;
 }
