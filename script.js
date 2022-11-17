@@ -2,15 +2,13 @@
 API_KEY = '8f43526'
 // OMDB API
 SEARCH_URL = `https://www.omdbapi.com/?`
-// IMDB API
-MOST_POPULAR_MOVIES = `https://imdb-api.com/en/API/MostPopularMovies/k_iij850vp`
-
 
 const searchBar = document.querySelector('.searchBar')
 const searchResultsContainer = document.querySelector('.searchResults')
 const favMovieContainer = document.querySelector('.favMovieContainer')
 const favMovieIds = []
 let currentIds = JSON.parse(localStorage.getItem('favMovieIds'));
+// Removing all the duplicates from the currentIds
 let uniqueIds = [...new Set(currentIds)]
 
 async function searchMovies(searchQuery) {
@@ -31,6 +29,7 @@ async function searchMovies(searchQuery) {
               </div>`
             })
 
+            // There is a comma in the searchResults output so here making all the search html a string...
             let htmlData = ''
             searchResults.forEach(result => {
                 htmlData += result
@@ -54,27 +53,9 @@ async function searchMovies(searchQuery) {
                 })
             })
 
-            // document.querySelectorAll('.addToFav').forEach((btn) => {
-            //     btn.addEventListener('click', (e) => {
-            //         console.log('Fav Button Clicked: ' + e.target.id)
-            //         if (favMovieIds.includes(e.target.id)) {
-            //             alert('Already Added to favorites')
-            //             return
-            //         }
-            //         favMovieIds.push(e.target.id)
-            //         if (currentIds != null) {
-            //             localStorage.setItem('favMovieIds', JSON.stringify(JSON.parse(currentIds).concat(favMovieIds)))
-            //         } else {
-            //             localStorage.setItem('favMovieIds', JSON.stringify(favMovieIds))
-            //         }
-            //     })
-            // })
-
-
         } else {
             searchResultsContainer.innerHTML = '<div class="card"><p style="background-color:rgba(0,0,0,0.8); color:#fff; padding: 0.25rem;">Enter Minimum 3 or more characters</p></div>'
         }
-
 
     } catch (error) {
         throw error
@@ -87,6 +68,9 @@ function addToFav(favMovieIdArr, movieID) {
     favMovieIdArr.push(movieID)
     if (favMovieIdArr.length > 0) {
         let prevData = localStorage.getItem('favMovieIds');
+        if (prevData == null) {
+            localStorage.setItem('favMovieIds', JSON.stringify(favMovieIdArr))
+        }
         localStorage.setItem('favMovieIds', JSON.stringify(JSON.parse(prevData).concat(favMovieIdArr)))
     } else {
         localStorage.setItem('favMovieIds', JSON.stringify(favMovieIdArr))
@@ -117,7 +101,10 @@ async function getSingleMovie(movieId) {
           </div>
         </div>`
 
-        document.querySelector('.singleMovie').innerHTML = singleMovieHtmlData
+        if (document.querySelector('.singleMovie')) {
+            document.querySelector('.singleMovie').innerHTML = singleMovieHtmlData
+        }
+
         document.querySelector('.singleMovieContent button').addEventListener('click', (e) => {
             addToFav(favMovieIds, e.target.id)
             e.target.innerHTML = 'Added'
@@ -173,13 +160,15 @@ function getFavMovies(favMovieIds) {
 
 getFavMovies(uniqueIds)
 
+
+// Remove Favorite Handler
 function removeFavMovie(totalIds, idToDel) {
     let resutls = totalIds.filter(id => id != idToDel)
     localStorage.setItem('favMovieIds', JSON.stringify(resutls))
     return resutls
 }
 
-
+// Calling SearchMovies function
 if (searchBar) {
     searchBar.addEventListener('keyup', (e) => {
         searchMovies(e.target.value)
