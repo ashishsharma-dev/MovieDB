@@ -87,6 +87,9 @@ function addToFav(favMovieIdArr, movieID) {
     favMovieIdArr.push(movieID)
     if (favMovieIdArr.length > 0) {
         let prevData = localStorage.getItem('favMovieIds');
+        if(prevData==null){
+            localStorage.setItem('favMovieIds', JSON.stringify(favMovieIdArr))
+        }
         localStorage.setItem('favMovieIds', JSON.stringify(JSON.parse(prevData).concat(favMovieIdArr)))
     } else {
         localStorage.setItem('favMovieIds', JSON.stringify(favMovieIdArr))
