@@ -83,7 +83,10 @@ async function getSingleMovie(movieId) {
     try {
         const response = await fetch(`${SEARCH_URL}apikey=${API_KEY}&i=${movieId}`)
         const data = await response.json()
-        const { Title, Year, Actors, Poster, Genre, Director, Writer, imdbRating, Plot, imdbID } = data
+        const { Title, Year, Actors, Poster, Genre, Director, Writer, imdbRating, Plot, imdbID, BoxOffice, Released, Runtime } = data
+
+        let splitData = Runtime.split(' ')
+        let runtimeNum = +splitData[0]
 
         let singleMovieHtmlData = `<h2 class="header">${Title}</h2>
         <p class="textNormal bold small my1">${Year}, ${Actors}</p>
@@ -95,7 +98,10 @@ async function getSingleMovie(movieId) {
             <p class="textNormal bold my1"><b>Directed by-</b> ${Director}</p>
             <p class="textNormal bold mb1"><b>Written by-</b> ${Writer}</p>
             <p class="textNormal bold mb1 rating">⭐${imdbRating} / 10</p>
-            <p class="textNormal">
+            <p class="textNormal"><b>Release Date: </b>${Released}</p>
+            <p class="textNormal"><b>Runtime: </b>${toHoursAndMinutes(runtimeNum).hours}h ${toHoursAndMinutes(runtimeNum).minutes}min</p>
+            <p class="textNormal"><b>BoxOffice: </b>${BoxOffice}</p>
+            <p class="textNormal my1">
               <b>Plot: </b>${Plot}</p>
             <button id="${imdbID}" class="btn addToFav">Add to Fav</button>
           </div>
@@ -113,6 +119,13 @@ async function getSingleMovie(movieId) {
         throw error
     }
 }
+
+function toHoursAndMinutes(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return { hours, minutes };
+}
+
 
 let singleMovieId = JSON.parse(localStorage.getItem('singleMovieId'))
 console.log(singleMovieId)
