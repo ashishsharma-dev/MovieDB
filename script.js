@@ -88,7 +88,9 @@ async function getSingleMovie(movieId) {
         let splitData = Runtime.split(' ')
         let runtimeNum = +splitData[0]
 
-        let singleMovieHtmlData = `<h2 class="header">${Title}</h2>
+        let singleMovieHtmlData = `
+        <a href="/" class="textNormal"><i class="fa-solid fa-arrow-left"></i> Back to Search</a>
+        <h2 class="header">${Title}</h2>
         <p class="textNormal bold small my1">${Year}, ${Actors}</p>
         <div class="singleMovieContainer">
           <img src="${Poster}" alt="image" />
@@ -109,6 +111,7 @@ async function getSingleMovie(movieId) {
 
         if (document.querySelector('.singleMovie')) {
             document.querySelector('.singleMovie').innerHTML = singleMovieHtmlData
+
         }
 
         document.querySelector('.singleMovieContent button').addEventListener('click', (e) => {
