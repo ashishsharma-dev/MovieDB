@@ -72,7 +72,7 @@ async function searchMovies(searchQuery) {
 
 
         } else {
-            searchResultsContainer.innerHTML = ''
+            searchResultsContainer.innerHTML = '<div class="card"><p style="background-color:rgba(0,0,0,0.8); color:#fff; padding: 0.25rem;">Enter Minimum 3 or more characters</p></div>'
         }
 
 
